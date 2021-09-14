@@ -5,14 +5,14 @@ class Book extends React.Component {
         return (
             <div className="book">
                 <div className="book-top">
-                <div className="book-cover" style={{ width: this.props.cover.width, height: this.props.cover.height, backgroundImage: this.props.cover.backgroundImage }}></div>
+                <div className="book-cover" style={{ width: 200, height: 200, backgroundImage: `url(${this.props.imageLinks.thumbnail})` }}></div>
                 <div className="book-shelf-changer">
                     <select>
                     <option value="move" disabled>Move to...</option>
-                    <option value="currentlyReading">Currently Reading</option>
-                    <option value="wantToRead">Want to Read</option>
-                    <option value="read">Read</option>
-                    <option value="none">None</option>
+                    <option value="currentlyReading" onClick={() => this.props.updateBook(this.props.id, 'currentlyReading')}>Currently Reading</option>
+                    <option value="wantToRead" onClick={() => this.props.updateBook(this.props.id, 'wantToRead')}>Want to Read</option>
+                    <option value="read" onClick={() => this.props.updateBook(this.props.id, 'read')}>Read</option>
+                    <option value="none" onClick={() => this.props.updateBook(this.props.id, 'none')}>None</option>
                     </select>
                 </div>
                 </div>
