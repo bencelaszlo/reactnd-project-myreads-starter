@@ -48,8 +48,23 @@ class BooksApp extends React.Component {
     console.log('queryTerm', queryTerm)
     this.setState({ searchTerm: queryTerm });
     search(queryTerm).then(searchResultBooks => {
-      this.setState({ searchResultBooks });
+      this.setState({ searchResultBooks: this.getBooksOnShelves(searchResultBooks) });
     });
+  }
+
+  getBooksOnShelves = (searchResultBooks) => {
+    if (!Array.isArray(searchResultBooks) || !Array.isArray(this.state.books)) {
+      return [];
+    }
+
+    return searchResultBooks.reduce((prev, current) => {
+      const bookOnAShelf = this.state.books.find(book => book.title === current.title);
+      if (bookOnAShelf) {
+        return [...prev, bookOnAShelf];
+      }
+
+      return [...prev, current];
+    }, []);
   }
 
   render() {
