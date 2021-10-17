@@ -45,7 +45,6 @@ class BooksApp extends React.Component {
   }
 
   updateQuery = (queryTerm) => {
-    console.log('queryTerm', queryTerm)
     this.setState({ searchTerm: queryTerm });
     search(queryTerm).then(searchResultBooks => {
       this.setState({ searchResultBooks: this.getBooksOnShelves(searchResultBooks) });
