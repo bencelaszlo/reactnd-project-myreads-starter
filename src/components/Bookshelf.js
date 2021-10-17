@@ -8,7 +8,7 @@ class Bookshelf extends React.Component {
                 <h2 className="bookshelf-title">{this.props.title}</h2>
                 <div className="bookshelf-books">
                     <ol className="books-grid">
-                        {this.props.books.map((book, i) => {
+                        {Array.isArray(this.props.books) && this.props.books.map((book, i) => {
                             return (<Book key={i} updateBook={this.props.updateBook} {...book}/>)
                         })}
                     </ol>
